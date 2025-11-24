@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Базовый учебник</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключаем Vue.js с CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. ИНТЕРПОЛЯЦИЯ И ДВУСТОРОННЯЯ СВЯЗЬ -->
+        <section class="section">
+            <h2>1. Интерполяция и двусторонняя связь</h2>
+            <p>Привет, {{ userName }}!</p>
+            <input v-model="userName" placeholder="Введите ваше имя">
+            <p>Возраст: {{ userAge }}</p>
+            <input v-model.number="userAge" type="number" placeholder="Введите возраст">
+        </section>
+
+        <!-- 2. УСЛОВНЫЙ РЕНДЕРИНГ -->
+        <section class="section">
+            <h2>2. Условный рендеринг (v-if, v-show)</h2>
+            <button @click="toggleVisibility">Переключить видимость</button>
+            <p v-if="isVisible" class="visible-text">Этот текст виден через v-if</p>
+            <p v-show="isVisible" class="visible-text">Этот текст виден через v-show</p>
+        </section>
+
+        <!-- 3. РЕНДЕРИНГ СПИСКОВ -->
+        <section class="section">
+            <h2>3. Рендеринг списков (v-for)</h2>
+            <input v-model="newItem" @keyup.enter="addItem" placeholder="Добавить элемент">
+            <button @click="addItem">Добавить</button>
+            <ul>
+                <li v-for="(item, index) in items" :key="index">
+                    {{ item }}
+                    <button @click="removeItem(index)" class="delete-btn">×</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 4. ОБРАБОТКА СОБЫТИЙ -->
+        <section class="section">
+            <h2>4. Обработка событий</h2>
+            <button @click="incrementCounter">Кликнут: {{ clickCount }} раз</button>
+            <button @click="resetCounter">Сбросить</button>
+        </section>
+
+        <!-- 5. ВЫЧИСЛЯЕМЫЕ СВОЙСТВА И МЕТОДЫ -->
+        <section class="section">
+            <h2>5. Вычисляемые свойства и методы</h2>
+            <p>Цена: {{ price }} руб.</p>
+            <p>Количество: {{ quantity }}</p>
+            <p>Итого: <strong>{{ totalPrice }} руб.</strong></p>
+            <button @click="increaseQuantity">+</button>
+            <button @click="decreaseQuantity">-</button>
+        </section>
+
+        <!-- 6. ПРИВЯЗКА КЛАССОВ И СТИЛЕЙ -->
+        <section class="section">
+            <h2>6. Динамические классы и стили</h2>
+            <div 
+                :class="['box', { 'active': isActive, 'error': hasError }]"
+                :style="{ backgroundColor: boxColor }"
+                @click="toggleBox"
+            >
+                Кликни меня!
+            </div>
+            <input v-model="boxColor" placeholder="Цвет фона (например, #ff0000)">
+        </section>
+
+        <!-- 7. РЕАКТИВНОСТЬ И WATCHER -->
+        <section class="section">
+            <h2>7. Реактивность и Watchers</h2>
+            <p>Счетчик: {{ counter }}</p>
+            <p>Предыдущее значение: {{ previousCounter }}</p>
+            <button @click="counter++">Увеличить</button>
+            <button @click="counter--">Уменьшить</button>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
